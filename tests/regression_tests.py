@@ -23,20 +23,19 @@ class TestSolphAndItsResults:
         tix = pd.period_range('1970-01-01', periods=1, freq='H')
         self.es = ES(timeindex=tix)
 
-    # TODO: Fix this test so that it works with the new solph and can be
-    #       re-enabled.
-    @nottest
     def test_issue_74(self):
-        Storage.optimization_options.update({'investment': True})
-        bus = Bus(uid="bus")
-        store = Storage(uid="store", inputs=[bus], outputs=[bus],
-                        c_rate_out=0.1, c_rate_in=0.1)
-        sink = Sink(uid="sink", inputs=[bus], val=[1])
+        bus = Bus(label="bus")
+        store = Storage(label="store", inputs={bus: Flow()},
+                        outputs={bus: Flow()},
+                        c_rate_out=0.1, c_rate_in=0.1, investment=True)
+        sink = Sink(label="sink", inputs={bus: Flow()}, val=[1])
 
         es = self.es
         om = OM(es)
         om.objective.set_value(-1)
-        es.results = om.results()
+        # TODO: Figure out how the new outputlib works and whether this line
+        #       has to be removed or can be adapted to work with it.
+        # es.results = om.results()
 
         try:
             es.dump()
