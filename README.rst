@@ -2,7 +2,7 @@
 oemof-solph-robust: Goal of this oemof-solph fork in stadt-land-energie-projekt
 ===========
 
-The aim of the oemof-solph fork in stadt-land-energie-projekt is to implement methods of perturbing the energy system input data and solution data, as well as solution strategies to investigate robust solutions.
+The aim of the oemof-solph fork in stadt-land-energie-projekt is to implement methods of perturbing the energy system input data and solution data, as well as to implement solution strategies to investigate robust solutions.
 
 ===========
 
