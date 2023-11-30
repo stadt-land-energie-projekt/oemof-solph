@@ -267,7 +267,7 @@ class BaseModel(po.ConcreteModel):
         ]
 
         if status == "ok" and termination_condition == "optimal":
-            logging.info("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111Optimization successful...")
+            logging.info("Optimization successful...")
         else:
             msg = (
                 "Optimization ended with status {0} and termination "
