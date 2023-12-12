@@ -255,7 +255,7 @@ class BaseModel(po.ConcreteModel):
 
         if solver == "gurobi_persistent":
             logging.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PERSISTENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            solver == "gurobi"
+            solver = "gurobi"
             opt = SolverFactory(solver, solver_io=solver_io)
             # set command line options
             options = opt.options
