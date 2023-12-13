@@ -253,24 +253,14 @@ class BaseModel(po.ConcreteModel):
         solve_kwargs = kwargs.get("solve_kwargs", {})
         solver_cmdline_options = kwargs.get("cmdline_options", {})
 
-        if solver == "gurobi_persistent":
-            logging.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PERSISTENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            solver = "gurobi"
-            opt = SolverFactory(solver, solver_io=solver_io)
-            # set command line options
-            options = opt.options
-            for k in solver_cmdline_options:
-                options[k] = solver_cmdline_options[k]
+
+        opt = SolverFactory(solver, solver_io=solver_io)
+        # set command line options
+        options = opt.options
+        for k in solver_cmdline_options:
+            options[k] = solver_cmdline_options[k]
     
-            solver_results = opt.solve(self, **solve_kwargs)
-        else:
-            opt = SolverFactory(solver, solver_io=solver_io)
-            # set command line options
-            options = opt.options
-            for k in solver_cmdline_options:
-                options[k] = solver_cmdline_options[k]
-    
-            solver_results = opt.solve(self, **solve_kwargs)
+        solver_results = opt.solve(self, **solve_kwargs)
 
         status = solver_results["Solver"][0]["Status"]
         termination_condition = solver_results["Solver"][0][
