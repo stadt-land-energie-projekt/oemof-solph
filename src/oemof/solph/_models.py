@@ -288,8 +288,6 @@ class BaseModel(po.ConcreteModel):
         self.es.results = solver_results
         self.solver_results = solver_results
 
-        logging.info("################################################TEST SUCCESSFUL")
-
         return solver_results
 
     def relax_problem(self):
