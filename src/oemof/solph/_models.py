@@ -255,10 +255,15 @@ class BaseModel(po.ConcreteModel):
 
 
         opt = SolverFactory(solver, solver_io=solver_io)
-        # set command line options
-        options = opt.options
-        for k in solver_cmdline_options:
-            options[k] = solver_cmdline_options[k]
+        
+        #set instance added for gurobi_persistent
+        if solver == "gurobi_persistent":
+            opt.set_instance(self)
+        else:
+            # set command line options
+            options = opt.options
+            for k in solver_cmdline_options:
+                options[k] = solver_cmdline_options[k]
     
         solver_results = opt.solve(self, **solve_kwargs)
 
@@ -280,7 +285,7 @@ class BaseModel(po.ConcreteModel):
         self.es.results = solver_results
         self.solver_results = solver_results
 
-        logging.info("##################################TESTING SUCCESSFUL#####################")
+        logging.info("***********************************TESTING SUCCESSFUL***********************************")
 
         return solver_results
 
