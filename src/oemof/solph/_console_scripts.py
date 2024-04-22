@@ -49,7 +49,7 @@ def check_oemof_installation(silent=False):
 
     # check solvers
     solver = dict()
-    for s in ["cbc", "glpk", "gurobi", "cplex"]:
+    for s in ["cbc", "glpk", "gurobi", "cplex", "gurobi_persistent"]:
         try:
             om.solve(solver=s)
             solver[s] = "working"
